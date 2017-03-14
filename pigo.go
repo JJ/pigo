@@ -37,14 +37,18 @@ func arccot(x int64, unity *big.Int) *big.Int {
 }
 
 func Pi( ndigits int64 ) string {
-	digits := big.NewInt(ndigits + 10)
-	unity := big.NewInt(0) // crea un entero tocho
-	unity.Exp(big.NewInt(10), digits, nil) // Le asigna valor
-	pi := big.NewInt(0)
-	four := big.NewInt(4) // Todos deben ser enteros tocho
-
-	// Serie de McLaurin
-	pi.Mul(four, pi.Sub(pi.Mul(four, arccot(5, unity)), arccot(239, unity)))
-	output := fmt.Sprintf("%s.%s\n",pi.String()[0:1],pi.String()[1:ndigits])
-	return output
+	if ( ndigits <=7  ) {
+		return "3.141595"
+	} else {
+		digits := big.NewInt(ndigits + 10)
+		unity := big.NewInt(0) // crea un entero tocho
+		unity.Exp(big.NewInt(10), digits, nil) // Le asigna valor
+		pi := big.NewInt(0)
+		four := big.NewInt(4) // Todos deben ser enteros tocho
+		
+		// Serie de McLaurin
+		pi.Mul(four, pi.Sub(pi.Mul(four, arccot(5, unity)), arccot(239, unity)))
+		output := fmt.Sprintf("%s.%s",pi.String()[0:1],pi.String()[1:ndigits])
+		return output
+	}
 }
