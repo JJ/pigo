@@ -36,7 +36,7 @@ func arccot(x int64, unity *big.Int) *big.Int {
 	return sum
 }
 
-func pi( ndigits int64 ) string {
+func Pi( ndigits int64 ) string {
 	digits := big.NewInt(ndigits + 10)
 	unity := big.NewInt(0) // crea un entero tocho
 	unity.Exp(big.NewInt(10), digits, nil) // Le asigna valor
